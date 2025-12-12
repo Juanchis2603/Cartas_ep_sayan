@@ -1,0 +1,110 @@
+.crea-carta-wrapper {
+  position: fixed;
+  bottom: 18px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  pointer-events: none;
+  z-index: 3000;
+}
+
+.btn-crea-tarjeta {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(90deg, #ffd54f, #ffb300);
+  color: #0b0b0b;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  box-shadow: 0 8px 24px rgba(255,180,0,0.18);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  min-width: 160px;
+}
+
+.btn-crea-tarjeta:hover { transform: translateY(-3px); box-shadow: 0 12px 34px rgba(255,180,0,0.22); }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4000;
+}
+
+.modal-contenedor {
+  width: 420px;
+  max-width: calc(100% - 32px);
+  background: linear-gradient(180deg,#0b0133,#2b0058);
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  color: #fff;
+}
+
+.modal-title {
+  margin: 0 0 10px 0;
+  color: #fff8b2;
+}
+
+.field-label {
+  display: block;
+  margin-top: 8px;
+  font-size: 13px;
+  color: #f0e68c;
+}
+.field-input, .field-file {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-top: 6px;
+  background: rgba(255,255,255,0.02);
+  color: #fff;
+}
+
+.preview {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.preview img {
+  max-width: 180px;
+  max-height: 120px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+.btn-cancel {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-crea {
+  background: linear-gradient(90deg,#ffd54f,#ffb300);
+  color: #0b0b0b;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
