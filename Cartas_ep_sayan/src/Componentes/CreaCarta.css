@@ -18,7 +18,7 @@
   justify-content: center;
   gap: 8px;
   background: linear-gradient(90deg, #ffd54f, #ffb300);
-  color: #0b0b0b;
+  color: #000000;
   border: none;
   padding: 12px 20px;
   border-radius: 12px;
@@ -35,7 +35,7 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,7 +45,7 @@
 .modal-contenedor {
   width: 420px;
   max-width: calc(100% - 32px);
-  background: linear-gradient(180deg,#0b0133,#2b0058);
+  background: linear-gradient(180deg,#0508c9,#fa8f03);
   padding: 18px;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.6);
@@ -101,7 +101,7 @@
   cursor: pointer;
 }
 .btn-crea {
-  background: linear-gradient(90deg,#ffd54f,#ffb300);
+  background: linear-gradient(90deg,#ffc403,#ffb300);
   color: #0b0b0b;
   border: none;
   padding: 8px 14px;
