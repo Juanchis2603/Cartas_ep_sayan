@@ -1,5 +1,4 @@
 import "./Cartas.css"
-import React from "react"
 
 type Props = {
   numero: number;
