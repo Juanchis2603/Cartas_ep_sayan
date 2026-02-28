@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import "./CreaCarta.css";
 
 type NuevaCarta = {
-  numero: number;
-  nombre: string;
+  idCard: number;
+  name: string;
   tipo: string;
-  ataque: number;
-  defensa: number;
-  descripcion: string;
-  imagen: string;
+  attack: number;
+  defense: number;
+  lifePoints: number;
+  description: string;
+  pictureUrl: string;
 };
 
 type Props = {
@@ -67,17 +68,18 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
     }
 
     const numero = existingCartas && existingCartas.length > 0
-      ? Math.max(...existingCartas.map((c) => c.numero)) + 1
+      ? Math.max(...existingCartas.map((c) => c.idCard)) + 1
       : Date.now();
 
     const nueva: NuevaCarta = {
-      numero,
-      nombre: nombre.trim(),
+      idCard: numero,
+      name: nombre.trim(),
       tipo: "saiyan",
-      ataque: a,
-      defensa: d,
-      descripcion: `Vida: ${v}`,
-      imagen: imagenUrl,
+      attack: a,
+      defense: d,
+      lifePoints: v,
+      description: `Vida: ${v}`,
+      pictureUrl: imagenUrl,
     };
 
     if (onAddCarta) onAddCarta(nueva);
