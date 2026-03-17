@@ -127,6 +127,7 @@ export default function VistaMazo() {
             descripcion={c.description}
             imagen={c.pictureUrl}
             onClick={() => abrirDetalle(c)}
+            onDelete={(id) => setCards((prev) => prev.filter((card) => card.idCard !== id))}
           />
         ))}
       </div>

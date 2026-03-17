@@ -45,3 +45,18 @@
   color: #f6fa04;
   font-size: 0.85rem;
 }
+
+.btn-delete {
+  margin-top: 10px;
+  background: rgba(255,0,0,0.18);
+  border: 1px solid rgba(255,0,0,0.35);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-delete:hover {
+  background: rgba(255,0,0,0.3);
+}

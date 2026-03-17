@@ -9,6 +9,7 @@ type Props = {
   descripcion: string;
   imagen: string;
   onClick?: () => void;
+  onDelete?: (id: number) => void;
 };
 
 function Cartas({
@@ -20,12 +21,15 @@ function Cartas({
   numero = 0,
   tipo = "electrico",
   onClick,
-
-
-
+  onDelete,
 
 
 }: Props) {
+
+  const handleDeleteClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onDelete) onDelete(numero);
+  };
 
   return (
     <div
@@ -41,6 +45,7 @@ function Cartas({
       <p><span className="icon">🗡️</span>Ataque: {ataque}</p>
       <p><span className="icon">🛡️</span>Defensa: {defensa}</p>
       <p className="desc"><span className="icon">✨</span>{descripcion}</p>
+      <button className="btn-delete" onClick={handleDeleteClick} aria-label={`Borrar carta ${nombre}`}>Borrar</button>
     </div>
   );
 }
