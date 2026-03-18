@@ -27,11 +27,11 @@ function Cartas({
 
 }: Props) {
 
-  const handleDeleteClick = (e: React.MouseEvent) => {
+   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (onDelete) onDelete(numero);
   };
-
+  
   return (
     <div
       className="card"
