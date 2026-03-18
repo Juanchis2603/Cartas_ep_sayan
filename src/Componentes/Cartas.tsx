@@ -1,3 +1,4 @@
+import React from "react";
 import "./Cartas.css"
 
 type Props = {

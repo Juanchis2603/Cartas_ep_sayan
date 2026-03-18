@@ -25,14 +25,20 @@ export default function VistaMazo() {
 
     try {
       const res = await fetch(DIREC_API, {
-        method: 'GET', // 'GET' is the default, so this line is optional
+        method: 'GET',
         headers: {
-          'UsersScretPasskey': 'USR-SECRET-99',
-          'Content-Type': 'application/json' // Example of another common header
+          'UsersScretPasskey': 'Juan263063EZ',
+          'Content-Type': 'application/json'
         }
       });
-      console.log("res", res);
+
+      if (!res.ok) {
+        throw new Error(`Failed to fetch cards: ${res.status}`);
+      }
+
       const data = await res.json();
+      // asumir que la API devuelve un array de cartas con la misma estructura
+      setCards(Array.isArray(data) ? data : []);
 
     } catch (e) {
       console.error("Error fetching data:", e);
@@ -111,6 +117,27 @@ export default function VistaMazo() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  const handleDeleteCarta = async (id: number) => {
+    try {
+      const res = await fetch(`${DIREC_API}/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'UsersScretPasskey': 'Juan263063EZ',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to delete card: ${res.status}`);
+      }
+
+      setCards((prev) => prev.filter((card) => card.idCard !== id));
+    } catch (e) {
+      console.error('Delete error:', e);
+      alert('No se pudo eliminar la carta en el servidor.');
+    }
+  };
+
   return (
     <div className="mazo-container">
       <CreaCarta existingCartas={cards} onAddCarta={handleAddCarta} />
@@ -127,7 +154,7 @@ export default function VistaMazo() {
             descripcion={c.description}
             imagen={c.pictureUrl}
             onClick={() => abrirDetalle(c)}
-            onDelete={(id) => setCards((prev) => prev.filter((card) => card.idCard !== id))}
+            onDelete={(id) => handleDeleteCarta(id)}
           />
         ))}
       </div>

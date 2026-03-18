@@ -1,11 +1,13 @@
 import './App.css'
-import VistaMazo from './Screens/VistaMazo'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <center><h1>Mi mazo de Perros Super Saiyajin</h1></center>
-      <VistaMazo />
+
+      <main>
+        <Outlet />
+      </main>
     </div>
   )
 }
