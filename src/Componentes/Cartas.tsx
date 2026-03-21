@@ -4,10 +4,10 @@ import "./Cartas.css"
 type Props = {
   numero: number;
   nombre: string;
-  tipo: string;
+  tipo: string | undefined;
   ataque?: number;
   defensa?: number;
-  descripcion: string;
+  descripcion: string | undefined;
   imagen: string;
   onClick?: () => void;
   onDelete?: (id: number) => void;

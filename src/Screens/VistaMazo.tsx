@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./VistaMazo.css";
 import Cartas from "../Componentes/Cartas";
 import CreaCarta from "../Componentes/CreaCarta";
+import type { Card } from "../services/api";
 
 type CardData = {
   idCard: number;
@@ -52,7 +53,7 @@ export default function VistaMazo() {
 
 
 
-  const [cards, setCards] = useState<CardData[]>(
+  const [cards, setCards] = useState<Card[]>(
     [
       {
         idCard: 1,
@@ -91,14 +92,14 @@ export default function VistaMazo() {
 
   );
 
-  const [selected, setSelected] = useState<CardData | null>(null);
+  const [selected, setSelected] = useState<Card | null>(null);
 
   // recibir cartas nuevas desde el componente CreaCarta
-  const handleAddCarta = (c: CardData) => {
+  const handleAddCarta = (c: Card) => {
     setCards((prev) => [c, ...prev]);
   };
 
-  const abrirDetalle = (c: CardData) => {
+  const abrirDetalle = (c: Card) => {
     setSelected(c);
     // evitar scroll al abrir
     document.body.style.overflow = "hidden";

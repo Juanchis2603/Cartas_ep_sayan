@@ -4,6 +4,7 @@ import App from './App'
 import VistaMazo from './Screens/VistaMazo'
 import CrearCartaPage from './Screens/CrearCartaPage'
 import DetalleCartaPage from './Screens/DetalleCartaPage'
+import HomePage from './Screens/HomePage'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>

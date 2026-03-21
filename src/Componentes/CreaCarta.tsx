@@ -1,20 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import "./CreaCarta.css";
-
-type NuevaCarta = {
-  idCard: number;
-  name: string;
-  tipo: string;
-  attack: number;
-  defense: number;
-  lifePoints: number;
-  description: string;
-  pictureUrl: string;
-};
+import { createCard } from "../services/api";
+import type { Card } from "../services/api";
 
 type Props = {
-  existingCartas?: NuevaCarta[];
-  onAddCarta?: (c: NuevaCarta) => void;
+  existingCartas?: Card[];
+  onAddCarta?: (c: Card) => void;
 };
 
 export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
@@ -67,73 +58,25 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
       return;
     }
 
-    // Preparar payload para la API
-    const payload = {
-      name: nombre.trim(),
-      tipo: "saiyan",
-      attack: a,
-      defense: d,
-      lifePoints: v,
-      description: `Vida: ${v}`,
-      pictureUrl: imagenUrl,
-    };
-
-    const API_BASE = import.meta.env.DIREC_API || "https://educapi-v2.onrender.com";
-    const CARD_ENDPOINT = `${API_BASE}/card`;
-
     try {
-      const res = await fetch(CARD_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "UsersScretPasskey": "Juan263063EZ",
-        },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) {
-        throw new Error(`Failed to create card: ${res.status}`);
-      }
-
-      const created = await res.json();
-
-      // Si el servidor devuelve la carta creada, la usamos; si no, creamos un fallback local
-      if (onAddCarta) {
-        const toAdd: NuevaCarta = created && created.idCard ? created : {
-          idCard: created && created.idCard ? created.idCard : (existingCartas && existingCartas.length > 0 ? Math.max(...existingCartas.map((c) => c.idCard)) + 1 : Date.now()),
-          name: payload.name,
-          tipo: payload.tipo,
-          attack: payload.attack,
-          defense: payload.defense,
-          lifePoints: payload.lifePoints,
-          description: payload.description,
-          pictureUrl: payload.pictureUrl,
-        };
-        onAddCarta(toAdd);
-      }
-
-      cerrarModal();
-    } catch (e) {
-      console.error("Create error:", e);
-      alert("No se pudo crear la carta en el servidor. Se añadirá localmente.");
-      // fallback local
-      const numero = existingCartas && existingCartas.length > 0
-        ? Math.max(...existingCartas.map((c) => c.idCard)) + 1
-        : Date.now();
-
-      const nueva: NuevaCarta = {
-        idCard: numero,
+      const newCard = await createCard({
         name: nombre.trim(),
-        tipo: "saiyan",
+        description: `Vida: ${v}`,
         attack: a,
         defense: d,
         lifePoints: v,
-        description: `Vida: ${v}`,
         pictureUrl: imagenUrl,
-      };
+        attributes: { tipo: "saiyan" },
+      });
 
-      if (onAddCarta) onAddCarta(nueva);
+      if (onAddCarta) {
+        onAddCarta(newCard);
+      }
+
       cerrarModal();
+    } catch (error) {
+      console.error("Error creating card:", error);
+      alert("Error al crear la carta");
     }
   };
 
