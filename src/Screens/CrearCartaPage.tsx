@@ -1,4 +1,3 @@
-import React from 'react';
 import CreaCarta from '../Componentes/CreaCarta';
 
 export default function CrearCartaPage() {

@@ -3,17 +3,7 @@ import "./VistaMazo.css";
 import Cartas from "../Componentes/Cartas";
 import CreaCarta from "../Componentes/CreaCarta";
 import type { Card } from "../services/api";
-
-type CardData = {
-  idCard: number;
-  name: string;
-  tipo: string;
-  attack: number;
-  defense: number;
-  lifePoints: number;
-  description: string;
-  pictureUrl: string;
-};
+import { deleteCard } from "../services/api";
 
 export default function VistaMazo() {
 
@@ -21,34 +11,26 @@ export default function VistaMazo() {
 
   const DIREC_API = `${Direc_API}/card`;
 
-  const fetchTask = async () => {
-    console.log("Fetching data from:", DIREC_API);
-
-    try {
-      const res = await fetch(DIREC_API, {
+  const getCartas = async () => {
+      let urlAPI = 'https://educapi-v2.onrender.com/card';
+     
+      const respuesta = await fetch(urlAPI, {
+  
         method: 'GET',
         headers: {
-          'UsersScretPasskey': 'Juan263063EZ',
-          'Content-Type': 'application/json'
-        }
+          usersecretpasskey: 'Juan263063EZ',
+        },
+  
       });
-
-      if (!res.ok) {
-        throw new Error(`Failed to fetch cards: ${res.status}`);
-      }
-
-      const data = await res.json();
-      // asumir que la API devuelve un array de cartas con la misma estructura
-      setCards(Array.isArray(data) ? data : []);
-
-    } catch (e) {
-      console.error("Error fetching data:", e);
+  
+      const objeto =  await respuesta.json();
+  
+       setCards(objeto.data)
+       console.log(objeto.data)
     }
 
-  };
-
   useEffect(() => {
-    fetchTask();
+    getCartas();
   }, []);
 
 
@@ -108,6 +90,25 @@ export default function VistaMazo() {
   const cerrarDetalle = () => {
     setSelected(null);
     document.body.style.overflow = "";
+
+
+
+      const eliminarCarta = async (idCarta: string) => {
+        let urlAPI = 'https://educapi-v2.onrender.com/card/' + idCarta;
+
+
+        const response = await fetch(urlAPI, {
+        method: 'DELETE',
+        headers: {
+          usersecretpasskey: 'UwU77',
+        },
+
+      });
+      if (response.status ===200 || response.status === 201) {
+        
+        getCartas();
+      }
+
   };
 
   useEffect(() => {
@@ -120,19 +121,7 @@ export default function VistaMazo() {
 
   const handleDeleteCarta = async (id: number) => {
     try {
-      const res = await fetch(`${DIREC_API}/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'UsersScretPasskey': 'Juan263063EZ',
-          'Content-Type': 'application/json'
-        }
-      });
-
-      
-      if (!res.ok) {
-        throw new Error(`Failed to delete card: ${res.status}`);
-      }
-
+      await deleteCard(id);
       setCards((prev) => prev.filter((card) => card.idCard !== id));
     } catch (e) {
       console.error('Delete error:', e);
@@ -156,7 +145,7 @@ export default function VistaMazo() {
             descripcion={c.description}
             imagen={c.pictureUrl}
             onClick={() => abrirDetalle(c)}
-            onDelete={(id) => setCards((prev) => prev.filter((card) => card.idCard !== id))}
+            onDelete={handleDeleteCarta}
           />
         ))}
       </div>
@@ -183,4 +172,4 @@ export default function VistaMazo() {
       )}
     </div>
   );
-}
+}}

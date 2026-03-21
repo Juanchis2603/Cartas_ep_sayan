@@ -16,6 +16,7 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
   const [vida, setVida] = useState<number | "">("");
   const [imagenUrl, setImagenUrl] = useState("");
   const [preview, setPreview] = useState("");
+  const [descripcion, setDescripcion] = useState("");
   const fileRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -73,12 +74,44 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
         onAddCarta(newCard);
       }
 
+      let urlAPI = 'https://educapi-v2.onrender.com/card';
+
+      const respuesta = await fetch(urlAPI, {
+
+        method: 'POST',
+        headers: {
+          usersecretpasskey: 'UWU77',
+          "Content-Type": "application/json"
+        },
+        body:JSON.stringify({
+
+            name: nombre,
+            description: descripcion,
+            attack: ataque,
+            defense: defensa,
+            lifePoints: vida,
+            pictureUrl: imagenUrl,
+            attributes: { tipo: "Mago" }
+
+          })
+      });
+
       cerrarModal();
     } catch (error) {
       console.error("Error creating card:", error);
       alert("Error al crear la carta");
     }
   };
+
+
+
+
+
+
+
+
+
+
 
   return (
     <>

@@ -28,8 +28,10 @@ export interface Card {
 
 export const getCards = async (page = 1, limit = 20) => {
   const response = await api.get(`/card?page=${page}&limit=${limit}`);
-  return response.data; // { data: Card[], total, page, limit }
+  // { data: Card[], total, page, limit }
 };
+
+
 
 export const getCard = async (id: number) => {
   const response = await api.get(`/card/${id}`);
