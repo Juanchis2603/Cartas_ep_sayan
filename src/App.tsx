@@ -7,11 +7,11 @@ function App() {
 
   return (
     <div className="App">
-
-
+      
       <main>
         <Outlet />
       </main>
+
     </div>
   )
 

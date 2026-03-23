@@ -23,7 +23,7 @@ export default function DetalleCartaPage() {
     const fetchCard = async () => {
       try {
         const res = await fetch(`${API_BASE}/card/${id}`, {
-          headers: { 'UsersScretPasskey': 'Juan263063EZ' }
+          headers: { 'usersecretpasskey': 'Juan263063EZ' }
         });
         if (!res.ok) throw new Error(`Status ${res.status}`);
         const data = await res.json();

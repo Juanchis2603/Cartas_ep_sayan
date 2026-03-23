@@ -5,9 +5,9 @@ export default function NavBar() {
   return (
     <nav className="navbar">
       <ul>
-        <li><Link to="/home">Inicio</Link></li>
-        <li><Link to="/">Mi Mazo</Link></li>
-        <li><Link to="/crear">Crear Carta</Link></li>
+        <li><Link to="/:id">Inicio</Link></li>
+        <li><Link to="/:id">Mi Mazo</Link></li>
+        <li><Link to="/:id">Crear Carta</Link></li>
       </ul>
     </nav>
   );

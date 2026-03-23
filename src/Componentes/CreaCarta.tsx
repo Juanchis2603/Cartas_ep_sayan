@@ -74,13 +74,13 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
         onAddCarta(newCard);
       }
 
-      let urlAPI = 'https://educapi-v2.onrender.com/card';
+      let urlAPI = 'https://educapi-v2.onrender.com/card/';
 
       const respuesta = await fetch(urlAPI, {
 
         method: 'POST',
         headers: {
-          usersecretpasskey: 'UWU77',
+          usersecretpasskey: 'Juan263063EZ',
           "Content-Type": "application/json"
         },
         body:JSON.stringify({

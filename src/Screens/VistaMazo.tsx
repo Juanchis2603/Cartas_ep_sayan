@@ -8,11 +8,10 @@ import { deleteCard } from "../services/api";
 export default function VistaMazo() {
 
   const Direc_API = import.meta.env.DIREC_API || "https://educapi-v2.onrender.com";
-
   const DIREC_API = `${Direc_API}/card`;
 
   const getCartas = async () => {
-      let urlAPI = 'https://educapi-v2.onrender.com/card';
+      let urlAPI = 'https://educapi-v2.onrender.com';
      
       const respuesta = await fetch(urlAPI, {
   
@@ -100,7 +99,7 @@ export default function VistaMazo() {
         const response = await fetch(urlAPI, {
         method: 'DELETE',
         headers: {
-          usersecretpasskey: 'UwU77',
+          usersecretpasskey: 'Juan263063EZ',
         },
 
       });
