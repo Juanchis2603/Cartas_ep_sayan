@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://educapi-v2.onrender.com';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://educapi-v2.onrender.com/card/';
 const API_KEY = import.meta.env.VITE_API_KEY || 'Juan263063EZ';
 
 const api = axios.create({

@@ -7,11 +7,11 @@ import { deleteCard } from "../services/api";
 
 export default function VistaMazo() {
 
-  const Direc_API = import.meta.env.DIREC_API || "https://educapi-v2.onrender.com";
+  const Direc_API = import.meta.env.DIREC_API || "https://educapi-v2.onrender.com/card/";
   const DIREC_API = `${Direc_API}/card`;
 
   const getCartas = async () => {
-      let urlAPI = 'https://educapi-v2.onrender.com';
+      let urlAPI = 'https://educapi-v2.onrender.com/card/';
      
       const respuesta = await fetch(urlAPI, {
   
@@ -31,8 +31,6 @@ export default function VistaMazo() {
   useEffect(() => {
     getCartas();
   }, []);
-
-
 
   const [cards, setCards] = useState<Card[]>(
     [
@@ -91,44 +89,7 @@ export default function VistaMazo() {
     document.body.style.overflow = "";
 
 
-
-      const eliminarCarta = async (idCarta: string) => {
-        let urlAPI = 'https://educapi-v2.onrender.com/card/' + idCarta;
-
-
-        const response = await fetch(urlAPI, {
-        method: 'DELETE',
-        headers: {
-          usersecretpasskey: 'Juan263063EZ',
-        },
-
-      });
-      if (response.status ===200 || response.status === 201) {
-        
-        getCartas();
-      }
-
-  };
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") cerrarDetalle();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, []);
-
-  const handleDeleteCarta = async (id: number) => {
-    try {
-      await deleteCard(id);
-      setCards((prev) => prev.filter((card) => card.idCard !== id));
-    } catch (e) {
-      console.error('Delete error:', e);
-      alert('No se pudo eliminar la carta en el servidor.');
-    }
-  };
-
-  return (
+     return (
     <div className="mazo-container">
       <CreaCarta existingCartas={cards} onAddCarta={handleAddCarta} />
 
@@ -171,4 +132,49 @@ export default function VistaMazo() {
       )}
     </div>
   );
-}}
+
+
+
+      const eliminarCarta = async (idCarta: string) => {
+        let urlAPI = 'https://educapi-v2.onrender.com/card/' + idCarta;
+
+
+        const response = await fetch(urlAPI, {
+        method: 'DELETE',
+        headers: {
+          usersecretpasskey: 'Juan263063EZ',
+        },
+
+      });
+      if (response.status ===200 || response.status === 201) { 
+        getCartas();
+      }
+
+  };
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") cerrarDetalle();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+
+  const handleDeleteCarta = async (id: number) => {
+    try {
+      await deleteCard(id);
+      setCards((prev) => prev.filter((card) => card.idCard !== id));
+    } catch (e) {
+      console.error('Delete error:', e);
+      alert('No se pudo eliminar la carta en el servidor.');
+    }
+  };
+
+ 
+}
+  function handleDeleteCarta(id: number): void {
+    throw new Error("Function not implemented.");
+  }
+
+}

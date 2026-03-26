@@ -104,15 +104,6 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
   };
 
 
-
-
-
-
-
-
-
-
-
   return (
     <>
       <div className="crea-carta-wrapper">

@@ -16,7 +16,7 @@ type CardData = {
 export default function DetalleCartaPage() {
   const { id } = useParams<{ id: string }>();
   const [card, setCard] = useState<CardData | null>(null);
-  const API_BASE = import.meta.env.DIREC_API || 'https://educapi-v2.onrender.com';
+  const API_BASE = import.meta.env.DIREC_API || 'https://educapi-v2.onrender.com/card/';
 
   useEffect(() => {
     if (!id) return;
