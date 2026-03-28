@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './VistaMazo.css';
 
 type CardData = {
@@ -15,8 +15,9 @@ type CardData = {
 
 export default function DetalleCartaPage() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [card, setCard] = useState<CardData | null>(null);
-  const API_BASE = import.meta.env.DIREC_API || 'https://educapi-v2.onrender.com/card/';
+  const API_BASE = 'https://educapi-v2.onrender.com';
 
   useEffect(() => {
     if (!id) return;
@@ -39,6 +40,7 @@ export default function DetalleCartaPage() {
 
   return (
     <div className="detalle-page" style={{ padding: 20 }}>
+      <button onClick={() => navigate('/mazo')} className="btn-edit" style={{ marginBottom: '20px' }}>Volver al Mazo</button>
       <h2>{card.name} <small>#{card.idCard}</small></h2>
       <div className="modal-card">
         <img className="big-img" src={card.pictureUrl} alt={card.name} />

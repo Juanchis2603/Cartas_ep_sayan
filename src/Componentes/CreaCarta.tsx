@@ -74,29 +74,6 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
         onAddCarta(newCard);
       }
 
-      let urlAPI = 'https://educapi-v2.onrender.com/card/';
-
-      await fetch(urlAPI, {
-
-        method: 'POST',
-        headers: {
-          usersecretpasskey: 'Juan263063EZ',
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-
-          name: nombre,
-          description: descripcion,
-          attack: ataque,
-          defense: defensa,
-          lifePoints: vida,
-          pictureUrl: imagenUrl,
-          attributes: { tipo: "Mago" }
-
-        })
-      });
-
-
       cerrarModal();
     } catch (error) {
       console.error("Error creating card:", error);

@@ -115,6 +115,8 @@ export default function VistaMazo() {
   };
 
   const handleEditClick = (c: Card) => {
+    // Si prefieres usar una ruta para editar:
+    // navigate(`/editar-carta/${c.idCard}`);
     setEditing(c);
     setEditForm({
       name: c.name,
@@ -162,7 +164,7 @@ export default function VistaMazo() {
   };
 
   return (
-    <div className='mazo-container'>
+    <div className='mazo-container, bg-gradient-to-r from-orange-500 to-red-500 min-h-screen p-4'>
       <CreaCarta existingCartas={cards} onAddCarta={handleAddCarta} />
 
       <div className='grid' aria-live='polite'>

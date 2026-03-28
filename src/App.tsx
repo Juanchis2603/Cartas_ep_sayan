@@ -1,17 +1,15 @@
-
+import { Outlet } from 'react-router-dom'
 import './App.css'
-import VistaMazo from './Screens/VistaMazo'
 
 function App() {
-
-
   return (
     <div className="App">
-      <VistaMazo/>
+      <h1>Mis Cartas de Perros Super Saiyajin</h1>
+      <main>
+        <Outlet />
+      </main>
     </div>
   )
-
 }
 
 export default App
-
