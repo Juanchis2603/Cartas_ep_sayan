@@ -172,17 +172,7 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
               onChange={(e) => setImagenUrl(e.target.value)}
             />
             
-            <input
-              ref={fileRef}
-              className="field-file"
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const f = e.target.files?.[0];
-                if (f) handleFile(f);
-              }}
-            />
-
+          
             {preview && (
               <div className="preview">
                 <img src={preview} alt="preview" />
