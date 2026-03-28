@@ -11,6 +11,7 @@ type Props = {
   imagen: string;
   onClick?: () => void;
   onDelete?: (id: number) => void;
+  onEdit?: () => void;
 };
 
 function Cartas({
@@ -23,6 +24,7 @@ function Cartas({
   tipo = "electrico",
   onClick,
   onDelete,
+  onEdit,
 
 
 }: Props) {
@@ -32,6 +34,11 @@ function Cartas({
     if (onDelete) onDelete(numero);
   };
   
+  const handleEditClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onEdit) onEdit();
+  };
+
   return (
     <div
       className="card"
@@ -46,6 +53,7 @@ function Cartas({
       <p><span className="icon">🗡️</span>Ataque: {ataque}</p>
       <p><span className="icon">🛡️</span>Defensa: {defensa}</p>
       <p className="desc"><span className="icon">✨</span>{descripcion}</p>
+      <button className="btn-edit" onClick={handleEditClick} aria-label={`Editar carta ${nombre}`}>Editar</button>
       <button className="btn-delete" onClick={handleDeleteClick} aria-label={`Borrar carta ${nombre}`}>Borrar</button>
     </div>
   );

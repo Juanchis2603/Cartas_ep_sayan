@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type ChangeEvent } from 'react';
 import './VistaMazo.css';
 import Cartas from '../Componentes/Cartas';
 import CreaCarta from '../Componentes/CreaCarta';
@@ -31,7 +31,7 @@ export default function VistaMazo() {
       attack: 99999,
       defense: 99999,
       lifePoints: 99999,
-      description: 'Vida: 99999',
+      description: 'Vida',
       pictureUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTF7cwSE0ZUo0BGjprMAsrq3Dz6dJ4WEgGwNg&s',
     },
@@ -42,7 +42,7 @@ export default function VistaMazo() {
       attack: 7777,
       defense: 7777,
       lifePoints: 7777,
-      description: '6666',
+      description: 'SUPER',
       pictureUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh7n2s8XoVqj3l5mLZt1a9uKkH8n6b2cQ&s',  },
     {
@@ -52,12 +52,20 @@ export default function VistaMazo() {
       attack: 8888,
       defense: 8888,
       lifePoints: 10000,
-      description: '10000',
+      description: 'SUPER',
       pictureUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh7n2s8XoVqj3l5mLZt1a9uKkH8n6b2cQ&s',},
   ]);
 
   const [selected, setSelected] = useState<Card | null>(null);
+  const [editing, setEditing] = useState<Card | null>(null);
+  const [editForm, setEditForm] = useState({
+    name: '',
+    attack: 0,
+    defense: 0,
+    description:'',
+    pictureUrl: ''
+  });
 
   // recibir cartas nuevas desde el componente CreaCarta
   const handleAddCarta = (c: Card) => {
@@ -105,6 +113,46 @@ export default function VistaMazo() {
     }
   };
 
+  const handleEditClick = (c: Card) => {
+    setEditing(c);
+    setEditForm({
+      name: c.name,
+      attack: c.attack,
+      defense: c.defense,
+      description: c.description || '',
+      pictureUrl: c.pictureUrl
+    });
+  };
+
+  const handleEditChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setEditForm(prev => ({
+      ...prev,
+      [name]: name === 'attack' || name === 'defense' ? Number(value) : value
+    }));
+  };
+
+  const handleSaveEdit = async () => {
+    if (!editing) return;
+    const urlAPI = `https://educapi-v2.onrender.com/card/${editing.idCard}`;
+    try {
+      const response = await fetch(urlAPI, {
+        method: 'PATCH',
+        headers: {
+          usersecretpasskey: 'Juan263063EZ',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(editForm)
+      });
+      if (response.ok) {
+        getCartas(); // Recargar la lista desde el servidor
+        setEditing(null);
+      }
+    } catch (e) {
+      console.error('Update error:', e);
+    }
+  };
+
   const cerrarDetalle = () => {
     setSelected(null);
     document.body.style.overflow = '';
@@ -127,6 +175,7 @@ export default function VistaMazo() {
             imagen={c.pictureUrl}
             onClick={() => abrirDetalle(c)}
             onDelete={handleDeleteCarta}
+            onEdit={() => handleEditClick(c)}
           />
         ))}
       </div>
@@ -162,6 +211,35 @@ export default function VistaMazo() {
                   <strong>Defensa:</strong> {selected.defense}
                 </p>
                 <p className='desc'>{selected.description}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {editing && (
+        <div className='overlay' onClick={() => setEditing(null)}>
+          <div className='modal' onClick={(e) => e.stopPropagation()}>
+            <h2>Editar Carta #{editing.idCard}</h2>
+            <div className='edit-form' style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              <label>Nombre:</label>
+              <input name="name" value={editForm.name} onChange={handleEditChange} />
+              
+              <label>Ataque:</label>
+              <input type="number" name="attack" value={editForm.attack} onChange={handleEditChange} />
+              
+              <label>Defensa:</label>
+              <input type="number" name="defense" value={editForm.defense} onChange={handleEditChange} />
+              
+              <label>Descripción:</label>
+              <textarea name="description" value={editForm.description} onChange={handleEditChange} />
+              
+              <label>Imagen URL:</label>
+              <input name="pictureUrl" value={editForm.pictureUrl} onChange={handleEditChange} />
+
+              <div className='modal-actions'>
+                <button className='btn-crea' onClick={handleSaveEdit}>Guardar</button>
+                <button className='btn-cancel' onClick={() => setEditing(null)}>Cancelar</button>
               </div>
             </div>
           </div>
