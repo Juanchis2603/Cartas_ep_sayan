@@ -11,14 +11,12 @@
               url('https://i.pinimg.com/736x/84/01/80/84018018ba0fc50d45d80576533cb796.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;  
-  background-position: center;
-  background-size: cover;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
   position: relative;
   overflow-x: hidden;
-  color: #e7f702;
+  color: #011468;
   animation: backgroundMove 20s infinite alternate ease-in-out;
 }
 
@@ -105,4 +103,56 @@
   animation-play-state: paused;
   transform: scale(1.05) translateY(-5px) !important;
   box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
+}
+
+/* Estilos y Animaciones para los botones de las cartas */
+.btn-edit, .btn-delete {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin: 5px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Botón Editar - Azul Super Saiyan */
+.btn-edit {
+  background-color: #0026ff;
+  box-shadow: 0 0 10px rgba(0, 38, 255, 0.5);
+  animation: energyPulseBlue 2s infinite alternate;
+}
+
+.btn-edit:hover {
+  background-color: #00d9ff;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #00d9ff;
+}
+
+/* Botón Borrar - Naranja Dragon Ball */
+.btn-delete {
+  background-color: #ff8c00;
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+  animation: energyPulseOrange 2s infinite alternate;
+}
+
+.btn-delete:hover {
+  background-color: #ffcc00;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ffcc00;
+}
+
+@keyframes energyPulseBlue {
+  from { box-shadow: 0 0 5px #0026ff; }
+  to { box-shadow: 0 0 15px #00d9ff; }
+}
+
+@keyframes energyPulseOrange {
+  from { box-shadow: 0 0 5px #ff8c00; }
+  to { box-shadow: 0 0 15px #ffcc00; }
 }
