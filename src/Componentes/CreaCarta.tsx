@@ -167,13 +167,11 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
             <input
               className="field-input"
               type="text"
-              placeholder="Pega URL..."
+              placeholder="Pega URL por favor"
               value={imagenUrl}
-              onChange={(e) => {
-                setImagenUrl(e.target.value);
-                setPreview(e.target.value);
-              }}
+              onChange={(e) => setImagenUrl(e.target.value)}
             />
+            
             <input
               ref={fileRef}
               className="field-file"
