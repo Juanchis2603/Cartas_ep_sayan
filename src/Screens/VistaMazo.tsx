@@ -63,6 +63,7 @@ export default function VistaMazo() {
     name: '',
     attack: 0,
     defense: 0,
+    lifePoints: 0,
     description:'',
     pictureUrl: ''
   });
@@ -119,6 +120,7 @@ export default function VistaMazo() {
       name: c.name,
       attack: c.attack,
       defense: c.defense,
+      lifePoints: c.lifePoints,
       description: c.description || '',
       pictureUrl: c.pictureUrl
     });
@@ -126,9 +128,10 @@ export default function VistaMazo() {
 
   const handleEditChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    const isNumeric = ['attack', 'defense', 'lifePoints'].includes(name);
     setEditForm(prev => ({
       ...prev,
-      [name]: name === 'attack' || name === 'defense' ? Number(value) : value
+      [name]: isNumeric ? Number(value) : value
     }));
   };
 
@@ -231,6 +234,9 @@ export default function VistaMazo() {
               <label>Defensa:</label>
               <input type="number" name="defense" value={editForm.defense} onChange={handleEditChange} />
               
+              <label>Vida:</label>
+              <input type="number" name="lifePoints" value={editForm.lifePoints} onChange={handleEditChange} />
+
               <label>Descripción:</label>
               <textarea name="description" value={editForm.description} onChange={handleEditChange} />
               
