@@ -5,7 +5,7 @@ import App from './App'
 createRoot(document.getElementById('root')!).render( 
   <BrowserRouter>
     <Routes>
-      <Route path="/cards" element={<App/>}></Route>
+      <Route path="/" element={<App/>}></Route>
     </Routes>
   </BrowserRouter>
 )

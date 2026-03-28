@@ -1,23 +1,17 @@
-import { useEffect } from 'react';
+
 import './App.css'
-import { Outlet } from 'react-router-dom'
+import VistaMazo from './Screens/VistaMazo'
 
 function App() {
 
 
   return (
     <div className="App">
-      
-      <main>
-        <Outlet />
-      </main>
-
+      <VistaMazo/>
     </div>
   )
 
 }
-
-
 
 export default App
 

@@ -76,25 +76,26 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
 
       let urlAPI = 'https://educapi-v2.onrender.com/card/';
 
-      const respuesta = await fetch(urlAPI, {
+      await fetch(urlAPI, {
 
         method: 'POST',
         headers: {
           usersecretpasskey: 'Juan263063EZ',
           "Content-Type": "application/json"
         },
-        body:JSON.stringify({
+        body: JSON.stringify({
 
-            name: nombre,
-            description: descripcion,
-            attack: ataque,
-            defense: defensa,
-            lifePoints: vida,
-            pictureUrl: imagenUrl,
-            attributes: { tipo: "Mago" }
+          name: nombre,
+          description: descripcion,
+          attack: ataque,
+          defense: defensa,
+          lifePoints: vida,
+          pictureUrl: imagenUrl,
+          attributes: { tipo: "Mago" }
 
-          })
+        })
       });
+
 
       cerrarModal();
     } catch (error) {
@@ -124,6 +125,15 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
               placeholder="Nombre de la carta..."
               value={nombre}
               onChange={(e) => setNombre(e.target.value)}
+            />
+
+            <label className="field-label">Descripción</label>
+            <input
+              className="field-input"
+              type="text"
+              placeholder="Descripción de la carta..."
+              value={descripcion}
+              onChange={(e) => setDescripcion(e.target.value)}
             />
 
             <label className="field-label">Ataque</label>
