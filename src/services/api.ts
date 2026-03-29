@@ -29,8 +29,7 @@ export interface Card {
 }
 
 export const getCards = async (page = 1, limit = 20) => {
-  const response = await api.get(`/card?page=${page}&limit=${limit}`);
-  // { data: Card[], total, page, limit }
+  const response = await api.get(`/card?page=${page}&limit=${limit}`);  // { data: Card[], total, page, limit }
 };
 
 

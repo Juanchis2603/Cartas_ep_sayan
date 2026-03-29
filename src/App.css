@@ -156,3 +156,46 @@
   from { box-shadow: 0 0 5px #ff8c00; }
   to { box-shadow: 0 0 15px #ffcc00; }
 }
+
+/* --- Estilos y Animaciones para Edición de Cartas --- */
+
+/* Animación de entrada estilo ráfaga de energía */
+@keyframes energyBurst {
+  0% { transform: scale(0.8) translateY(50px); opacity: 0; filter: brightness(2); }
+  100% { transform: scale(1) translateY(0); opacity: 1; filter: brightness(1); }
+}
+
+/* Animación de vibración de Ki para campos activos */
+@keyframes kiVibration {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(0.5px, 0.5px); }
+  50% { transform: translate(-0.5px, -0.5px); }
+  75% { transform: translate(0.5px, -0.5px); }
+  100% { transform: translate(0, 0); }
+}
+
+.edit-form-card {
+  animation: energyBurst 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background: rgba(0, 0, 0, 0.85) !important;
+  border: 3px solid #00d9ff !important;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 217, 255, 0.4);
+}
+
+.edit-form-card input:focus, 
+.edit-form-card textarea:focus {
+  outline: none;
+  border-color: #ffcc00 !important;
+  box-shadow: 0 0 15px #ffcc00 !important;
+  animation: kiVibration 0.2s infinite;
+  background-color: #111 !important;
+}
+
+.btn-save-energy {
+  background: linear-gradient(45deg, #0026ff, #00d9ff);
+  color: white;
+  text-shadow: 0 0 5px #fff;
+  box-shadow: 0 0 15px rgba(0, 38, 255, 0.6);
+  animation: energyPulseBlue 1.5s infinite alternate;
+}
