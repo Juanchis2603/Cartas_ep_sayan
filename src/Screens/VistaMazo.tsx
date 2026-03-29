@@ -1,7 +1,6 @@
 import { useEffect, useState, type ChangeEvent } from 'react';
 import './VistaMazo.css';
 import Cartas from '../Componentes/Cartas';
-import CreaCarta from '../Componentes/CreaCarta';
 import type { Card } from '../services/api';
 import { deleteCard } from '../services/api';
 
@@ -69,9 +68,6 @@ export default function VistaMazo() {
   });
 
   // recibir cartas nuevas desde el componente CreaCarta
-  const handleAddCarta = (c: Card) => {
-    setCards((prev) => [c, ...prev]);
-  };
 
   const abrirDetalle = (c: Card) => {
     setSelected(c);

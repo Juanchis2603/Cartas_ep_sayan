@@ -28,8 +28,7 @@ export interface Card {
   tipo?: string; // For compatibility
 }
 
-export const getCards = async (page = 1, limit = 20) => {
-  const response = await api.get(`/card?page=${page}&limit=${limit}`);  // { data: Card[], total, page, limit }
+export const getCards = async (_page = 1, _limit = 20) => {
 };
 
 
