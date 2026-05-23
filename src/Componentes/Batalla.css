@@ -20,3 +20,14 @@
 .batalla-card img{ max-width:100%; border-radius:8px; }
 .batalla-vs{ font-size:36px; font-weight:800; color:#0026ff }
 .btn-volver{ padding:8px 14px; border-radius:8px; border:none; background:#0026ff;color:#fff; cursor:pointer }
+
+.batalla-actions .btn-critico, .batalla-actions .btn-normal {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+}
+.batalla-actions .btn-critico { background: linear-gradient(90deg,#ff6b6b,#ff3b3b); color:#fff }
+.batalla-actions .btn-normal { background: linear-gradient(90deg,#ffd27a,#ff8c00); color:#001137 }
+
