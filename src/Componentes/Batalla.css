@@ -1,6 +1,11 @@
 .batalla-page {
   padding: 24px;
   text-align: center;
+ 
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  background-image: url(https://i.ytimg.com/vi/zjqkovjUSls/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB_vJHO-61knUW66HaVPQHnrlid7g);
 }
 .batalla-grid {
   display: flex;
@@ -30,4 +35,7 @@
 }
 .batalla-actions .btn-critico { background: linear-gradient(90deg,#ff6b6b,#ff3b3b); color:#fff }
 .batalla-actions .btn-normal { background: linear-gradient(90deg,#ffd27a,#ff8c00); color:#001137 }
+
+.turn-indicator { margin-top: 12px; font-weight: 800; color: #0026ff; text-align: center }
+.batalla-actions button:disabled { opacity: 0.45; cursor: not-allowed }
 

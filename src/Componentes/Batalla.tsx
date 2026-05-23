@@ -33,6 +33,7 @@ export default function Batalla() {
   const [lifeA, setLifeA] = useState<number>(a.lifePoints ?? 100);
   const [lifeB, setLifeB] = useState<number>(b.lifePoints ?? 100);
   const [winner, setWinner] = useState<string | null>(null);
+  const [turn, setTurn] = useState<number>(0); // 0 = A's turn, 1 = B's turn
 
   useEffect(() => {
     if (lifeA <= 0) setWinner(b.name);
@@ -41,16 +42,31 @@ export default function Batalla() {
   }, [lifeA, lifeB]);
 
   const dañoCritico = () => {
-    setLifeB((prev) => Math.max(0, prev - Math.floor(prev / 2)));
+    if (winner) return;
+    if (turn === 0) {
+      setLifeB((prev) => Math.max(0, prev - Math.floor(prev / 2)));
+      setTurn(1);
+    } else {
+      setLifeA((prev) => Math.max(0, prev - Math.floor(prev / 2)));
+      setTurn(0);
+    }
   };
 
   const dañoNormal = () => {
-    setLifeB((prev) => Math.max(0, prev - 50));
+    if (winner) return;
+    if (turn === 0) {
+      setLifeB((prev) => Math.max(0, prev - 50));
+      setTurn(1);
+    } else {
+      setLifeA((prev) => Math.max(0, prev - 50));
+      setTurn(0);
+    }
   };
 
   return (
     <div className="batalla-page">
       <h2>Batalla: {a.name} VS {b.name}</h2>
+      <div className="turn-indicator">Turno: <strong>{turn === 0 ? a.name : b.name}</strong></div>
       <div className="batalla-grid">
         <div className="batalla-card">
           <img src={a.pictureUrl} alt={a.name} />
@@ -72,8 +88,12 @@ export default function Batalla() {
       </div>
 
       <div className="batalla-actions" style={{ marginTop: 20, display: 'flex', gap: 12, justifyContent: 'center' }}>
-        <button className="btn-critico" onClick={dañoCritico}>Daño Crítico</button>
-        <button className="btn-normal" onClick={dañoNormal}>Daño Normal</button>
+        <button className="btn-critico" onClick={dañoCritico} disabled={!!winner}>
+          Daño Crítico
+        </button>
+        <button className="btn-normal" onClick={dañoNormal} disabled={!!winner}>
+          Daño Normal
+        </button>
       </div>
 
       {winner && <div style={{ marginTop: 18, fontWeight: 800, color: '#0026ff' }}>Ganador: {winner}</div>}

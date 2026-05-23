@@ -184,7 +184,7 @@ export default function VistaMazo() {
 
   return (
     <div className='mazo-container, bg-gradient-to-r from-orange-500 to-red-500 min-h-screen p-4'>
-      <div className='controls' style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '12px' }}>
+      <div className='controls' style={{ display: 'flex', gap: '20px', alignItems: 'center', marginBottom: '12px' }}>
         <button
           className={`btn-select-two ${modoSeleccion ? 'active' : ''}`}
           onClick={() => {
@@ -197,7 +197,7 @@ export default function VistaMazo() {
         <button
           className='btn-pelear'
           onClick={handlePelear}
-          style={{ padding: '8px 14px', borderRadius: 10, border: '2px solid #00137c', background: '#1e40af', color: '#fff', fontWeight: 700, cursor: 'pointer' }}
+          style={{ padding: '10px 20px', borderRadius: 10, border: '2px solid #00137c', background: '#1e40af', color: '#fff', fontWeight: 700, cursor: 'pointer' }}
         >
           Pelear
         </button>
