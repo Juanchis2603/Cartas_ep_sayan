@@ -67,6 +67,18 @@ export default function VistaMazo() {
     pictureUrl: ''
   });
 
+  const [modoSeleccion, setModoSeleccion] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<number[]>([]);
+
+  const toggleSelect = (id: number) => {
+    setSelectedIds((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id);
+      if (prev.length < 2) return [...prev, id];
+      alert('Solo puedes seleccionar dos cartas.');
+      return prev;
+    });
+  };
+
   // recibir cartas nuevas desde el componente CreaCarta
 
   const abrirDetalle = (c: Card) => {
@@ -161,6 +173,19 @@ export default function VistaMazo() {
 
   return (
     <div className='mazo-container, bg-gradient-to-r from-orange-500 to-red-500 min-h-screen p-4'>
+      <div className='controls' style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '12px' }}>
+        <button
+          className={`btn-select-two ${modoSeleccion ? 'active' : ''}`}
+          onClick={() => {
+            if (modoSeleccion) { setModoSeleccion(false); setSelectedIds([]); }
+            else setModoSeleccion(true);
+          }}
+        >
+          {modoSeleccion ? 'Cancelar selección' : 'Seleccionar hasta 2 cartas'}
+        </button>
+        <span className='selected-count'>Seleccionadas: {selectedIds.length}/2</span>
+      </div>
+
       <div className='grid' aria-live='polite'>
         {cards.map((c) => (
           <Cartas
@@ -172,7 +197,8 @@ export default function VistaMazo() {
             defensa={c.defense}
             descripcion={c.description}
             imagen={c.pictureUrl}
-            onClick={() => abrirDetalle(c)}
+            onClick={() => modoSeleccion ? toggleSelect(c.idCard) : abrirDetalle(c)}
+            isSelected={selectedIds.includes(c.idCard)}
             onDelete={handleDeleteCarta}
             onEdit={() => handleEditClick(c)}
           />
