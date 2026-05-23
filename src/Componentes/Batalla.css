@@ -1,0 +1,90 @@
+.batalla-page {
+  padding: 24px;
+  text-align: center;
+ 
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  background-image: url(https://i.ytimg.com/vi/zjqkovjUSls/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLB_vJHO-61knUW66HaVPQHnrlid7g);
+}
+.batalla-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 18px;
+}
+.batalla-card {
+  width: 260px;
+  background: linear-gradient(180deg,#ffa601,#008cff,#ff9101    );
+  border: 3px solid #0026ff;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.batalla-card img{ max-width:100%; border-radius:8px; }
+.batalla-vs{ font-size:36px; font-weight:800; color:#fbff00 }
+.btn-volver{ padding:8px 14px; border-radius:8px; border:none; background:#0026ff;color:#fff; cursor:pointer }
+
+.batalla-actions .btn-critico, .batalla-actions .btn-normal {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 800;
+  cursor: pointer;
+  border: none;
+}
+.batalla-actions .btn-critico { background: linear-gradient(90deg,#ff6b6b,#ff3b3b); color:#fff }
+.batalla-actions .btn-normal { background: linear-gradient(90deg,#ffd27a,#ff8c00); color:#001137 }
+
+.turn-indicator { margin-top: 12px; font-weight: 800; color: #0026ff; text-align: center; position: relative; animation: turnGlow 2s infinite alternate ease-in-out; }
+.batalla-actions button:disabled { opacity: 0.45; cursor: not-allowed }
+
+.batalla-page h2 {
+  font-size: 2.4rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #ffe84d;
+  text-shadow: 0 0 30px rgba(255, 226, 89, 0.8), 0 0 60px rgba(255, 160, 0, 0.35);
+  animation: titleFlash 2.4s infinite ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+.batalla-card h3 {
+  font-size: 1.3rem;
+  margin: 10px 0 6px;
+  color: #0026ff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation: subtitleBounce 1.8s infinite alternate ease-in-out;
+}
+
+.batalla-card p {
+  margin: 8px 0;
+  color: #262626;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.55);
+}
+
+.batalla-card p strong {
+  color: #851313;
+  text-shadow: 0 0 6px rgba(182, 75, 75, 0.8);
+}
+
+@keyframes titleFlash {
+  0% { transform: translateY(0) scale(1); filter: brightness(1); }
+  50% { transform: translateY(-4px) scale(1.02); filter: brightness(1.15); }
+  100% { transform: translateY(0) scale(1); filter: brightness(1); }
+}
+
+@keyframes subtitleBounce {
+  0% { transform: translateY(0); color: #0026ff; }
+  100% { transform: translateY(-3px); color: #1647ff; }
+}
+
+@keyframes turnGlow {
+  from { text-shadow: 0 0 4px rgba(0, 38, 255, 0.35); }
+  to { text-shadow: 0 0 18px rgba(0, 38, 255, 0.75); }
+}
+

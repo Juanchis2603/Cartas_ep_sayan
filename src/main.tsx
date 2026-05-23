@@ -4,6 +4,7 @@ import App from './App'
 import VistaMazo from './Screens/VistaMazo'
 import CrearCartaPage from './Screens/CrearCartaPage'
 import DetalleCartaPage from './Screens/DetalleCartaPage'
+import Batalla from './Componentes/Batalla'
 
 createRoot(document.getElementById('root')!).render( 
   <BrowserRouter>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/crear-carta" element={<CrearCartaPage />} />
         <Route path="/detalle/:id" element={<DetalleCartaPage />} />
         <Route path="/editar-carta/:id" element={<VistaMazo />} />
+        <Route path="/batalla" element={<Batalla />} />
       </Route>
     </Routes>
   </BrowserRouter>

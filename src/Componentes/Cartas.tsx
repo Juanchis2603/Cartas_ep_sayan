@@ -12,6 +12,7 @@ type Props = {
   onClick?: () => void;
   onDelete?: (id: number) => void;
   onEdit?: () => void;
+  isSelected?: boolean;
 };
 
 function Cartas({
@@ -25,6 +26,7 @@ function Cartas({
   onClick,
   onDelete,
   onEdit,
+  isSelected = false,
 
 
 }: Props) {
@@ -41,7 +43,7 @@ function Cartas({
 
   return (
     <div
-      className="card"
+      className={`card ${isSelected ? 'selected' : ''}`}
       onClick={onClick}
       role="button"
       tabIndex={0}
