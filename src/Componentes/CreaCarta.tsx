@@ -38,16 +38,16 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
     if (fileRef.current) fileRef.current.value = "";
   };
 
- // const handleFile = (f?: File) => {
- //   if (!f) return;
- //   const reader = new FileReader();
- //   reader.onload = (e) => {
- //     const res = e.target?.result as string;
- //     setPreview(res);
- //     setImagenUrl(res);
- //   };
- //   reader.readAsDataURL(f);
- // };
+  // const handleFile = (f?: File) => {
+  //   if (!f) return;
+  //   const reader = new FileReader();
+  //   reader.onload = (e) => {
+  //     const res = e.target?.result as string;
+  //     setPreview(res);
+  //     setImagenUrl(res);
+  //   };
+  //   reader.readAsDataURL(f);
+  // };
 
   const handleCreate = async () => {
     const a = Number(ataque);
@@ -148,8 +148,8 @@ export default function CreaCarta({ existingCartas = [], onAddCarta }: Props) {
               value={imagenUrl}
               onChange={(e) => setImagenUrl(e.target.value)}
             />
-            
-          
+
+
             {preview && (
               <div className="preview">
                 <img src={preview} alt="preview" />

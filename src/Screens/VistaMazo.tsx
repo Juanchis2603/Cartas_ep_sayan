@@ -43,7 +43,8 @@ export default function VistaMazo() {
       lifePoints: 7777,
       description: 'SUPER',
       pictureUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh7n2s8XoVqj3l5mLZt1a9uKkH8n6b2cQ&s',  },
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh7n2s8XoVqj3l5mLZt1a9uKkH8n6b2cQ&s',
+    },
     {
       idCard: 3,
       name: 'Brolly',
@@ -53,7 +54,8 @@ export default function VistaMazo() {
       lifePoints: 10000,
       description: 'SUPER',
       pictureUrl:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh7n2s8XoVqj3l5mLZt1a9uKkH8n6b2cQ&s',},
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh7n2s8XoVqj3l5mLZt1a9uKkH8n6b2cQ&s',
+    },
   ]);
 
   const [selected, setSelected] = useState<Card | null>(null);
@@ -63,7 +65,7 @@ export default function VistaMazo() {
     attack: 0,
     defense: 0,
     lifePoints: 0,
-    description:'',
+    description: '',
     pictureUrl: ''
   });
 
@@ -223,19 +225,19 @@ export default function VistaMazo() {
             <div className='edit-form' style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               <label>Nombre:</label>
               <input name="name" value={editForm.name} onChange={handleEditChange} />
-              
+
               <label>Ataque:</label>
               <input type="number" name="attack" value={editForm.attack} onChange={handleEditChange} />
-              
+
               <label>Defensa:</label>
               <input type="number" name="defense" value={editForm.defense} onChange={handleEditChange} />
-              
+
               <label>Vida:</label>
               <input type="number" name="lifePoints" value={editForm.lifePoints} onChange={handleEditChange} />
 
               <label>Descripción:</label>
               <textarea name="description" value={editForm.description} onChange={handleEditChange} />
-              
+
               <label>Imagen URL:</label>
               <input name="pictureUrl" value={editForm.pictureUrl} onChange={handleEditChange} />
 
