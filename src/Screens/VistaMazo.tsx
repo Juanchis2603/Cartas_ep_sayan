@@ -1,4 +1,5 @@
 import { useEffect, useState, type ChangeEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './VistaMazo.css';
 import Cartas from '../Componentes/Cartas';
 import type { Card } from '../services/api';
@@ -69,6 +70,7 @@ export default function VistaMazo() {
 
   const [modoSeleccion, setModoSeleccion] = useState(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const navigate = useNavigate();
 
   const toggleSelect = (id: number) => {
     setSelectedIds((prev) => {
@@ -77,6 +79,15 @@ export default function VistaMazo() {
       alert('Solo puedes seleccionar dos cartas.');
       return prev;
     });
+  };
+
+  const handlePelear = () => {
+    if (selectedIds.length !== 2) {
+      alert('Selecciona exactamente dos cartas para pelear.');
+      return;
+    }
+    const seleccionadas = cards.filter((c) => selectedIds.includes(c.idCard));
+    navigate('/batalla', { state: { cards: seleccionadas } });
   };
 
   // recibir cartas nuevas desde el componente CreaCarta
@@ -182,6 +193,13 @@ export default function VistaMazo() {
           }}
         >
           {modoSeleccion ? 'Cancelar selección' : 'Seleccionar hasta 2 cartas'}
+        </button>
+        <button
+          className='btn-pelear'
+          onClick={handlePelear}
+          style={{ padding: '8px 14px', borderRadius: 10, border: '2px solid #00137c', background: '#1e40af', color: '#fff', fontWeight: 700, cursor: 'pointer' }}
+        >
+          Pelear
         </button>
         <span className='selected-count'>Seleccionadas: {selectedIds.length}/2</span>
       </div>
