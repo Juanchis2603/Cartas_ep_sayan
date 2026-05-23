@@ -89,14 +89,14 @@ export default function Batalla() {
 
       <div className="batalla-actions" style={{ marginTop: 20, display: 'flex', gap: 12, justifyContent: 'center' }}>
         <button className="btn-critico" onClick={dañoCritico} disabled={!!winner}>
-          Daño Crítico
+          KAMEKAMEJA
         </button>
         <button className="btn-normal" onClick={dañoNormal} disabled={!!winner}>
-          Daño Normal
+         PUÑO NORMAL
         </button>
       </div>
 
-      {winner && <div style={{ marginTop: 18, fontWeight: 800, color: '#0026ff' }}>Ganador: {winner}</div>}
+      {winner && <div style={{ marginTop: 18, fontWeight: 800, color: '#eeff00' }}>Ganador: {winner}</div>}
 
       <div style={{ marginTop: 20 }}>
         <button className="btn-volver" onClick={() => navigate(-1)}>Volver</button>
