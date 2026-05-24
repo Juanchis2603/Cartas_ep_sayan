@@ -36,7 +36,7 @@
 .batalla-actions .btn-critico { background: linear-gradient(90deg,#ff6b6b,#ff3b3b); color:#fff }
 .batalla-actions .btn-normal { background: linear-gradient(90deg,#ffd27a,#ff8c00); color:#001137 }
 
-.turn-indicator { margin-top: 20px; font-weight: 800; color: #ffe600; text-align: center; position: relative; animation: turnGlow 2s infinite alternate ease-in-out; }
+.turn-indicator { margin-top: 20px; font-weight: 8000; color: #eeff00; text-align: center; position: relative; animation: turnGlow 2s infinite alternate ease-in-out; }
 .batalla-actions button:disabled { opacity: 0.45; cursor: not-allowed }
 
 .batalla-page h2 {
@@ -105,8 +105,4 @@ border-radius: 30%;
   border-radius: 30%;
 }
 
-.titu{
-  border-radius: 20%;
-  background-color: #0026ff;
-  background-image: url(https://i.pinimg.com/736x/b1/d0/78/b1d0789e1e46970cd67ca51dc91e0173.jpg);
-}
+
