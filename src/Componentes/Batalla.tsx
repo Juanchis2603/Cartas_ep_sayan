@@ -64,9 +64,20 @@ export default function Batalla() {
   };
 
   return (
-    <div className="batalla-page">
-      <h2>Batalla: {a.name} VS {b.name}</h2>
-      <div className="turn-indicator">Turno: <strong>{turn === 0 ? a.name : b.name}</strong></div>
+    <div className="batalla-page"> 
+    
+      <div className='titu'>
+      <h2> {a.name} VS {b.name}</h2>
+      </div>
+
+      <div className="turn-indicator">Turno: <strong>{turn === 0 ? a.name : b.name}</strong>
+      <br />
+      <br />
+      <center>
+        <img src="https://i.pinimg.com/736x/e5/52/34/e5523410c9e108b7d5f063bb0403635a.jpg" width={100} height={100} alt="" className='logo' />
+      </center>
+      </div>
+
       <div className="batalla-grid">
         <div className="batalla-card">
           <img src={a.pictureUrl} alt={a.name} />
@@ -90,16 +101,33 @@ export default function Batalla() {
       <div className="batalla-actions" style={{ marginTop: 20, display: 'flex', gap: 12, justifyContent: 'center' }}>
         <button className="btn-critico" onClick={dañoCritico} disabled={!!winner}>
           KAMEKAMEJA
+
+          <br />
+      
+          <center>
+            <img src="https://i.pinimg.com/webp85/736x/a8/b9/e5/a8b9e5f88149db0960c6d7f3c604dd98.webp" width={100} height={100} className="kamekameja" />
+          </center>
+
         </button>
         <button className="btn-normal" onClick={dañoNormal} disabled={!!winner}>
-         PUÑO NORMAL
+          PUÑO NORMAL
+
+          <br />
+          <center>
+            <img src="https://i.pinimg.com/736x/c6/49/58/c64958caf9a912ad9e1a6af7a3a8e642.jpg" width={100} height={100} className='puño'/>
+          </center>
         </button>
       </div>
 
       {winner && <div style={{ marginTop: 18, fontWeight: 800, color: '#eeff00' }}>Ganador: {winner}</div>}
 
       <div style={{ marginTop: 20 }}>
-        <button className="btn-volver" onClick={() => navigate(-1)}>Volver</button>
+        <button className="btn-volver" onClick={() => navigate(-1)}>Volver
+          <br />
+          <center>
+            <img src="https://i.pinimg.com/736x/8e/8b/8f/8e8b8fea6c962ebffaa411e5ba947ea8.jpg" width={20} height={20} className='atras'/>
+          </center>
+        </button>
       </div>
     </div>
   );
