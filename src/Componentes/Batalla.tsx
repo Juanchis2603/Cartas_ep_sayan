@@ -44,11 +44,11 @@ export default function Batalla() {
   const dañoCritico = () => {
     if (winner) return;
     if (turn === 0) {
-      const damage = (a.attack ?? 50) * 2;
+      const damage = (a.attack ?? 50);
       setLifeB((prev) => Math.max(0, prev - damage));
       setTurn(1);
     } else {
-      const damage = (b.attack ?? 50) * 2;
+      const damage = (b.attack ?? 50);
       setLifeA((prev) => Math.max(0, prev - damage));
       setTurn(0);
     }
@@ -79,7 +79,7 @@ export default function Batalla() {
       </div>
 
       <div className="batalla-grid">
-        <div className="batalla-card">
+        <div className={`batalla-card ${turn === 0 ? 'active' : ''}`}>
           <img src={a.pictureUrl} alt={a.name} />
           <h3>{a.name}</h3>
           <p>Ataque: {a.attack}</p>
@@ -89,7 +89,7 @@ export default function Batalla() {
 
         <div className="batalla-vs">VS</div>
 
-        <div className="batalla-card">
+        <div className={`batalla-card ${turn === 1 ? 'active' : ''}`}>
           <img src={b.pictureUrl} alt={b.name} />
           <h3>{b.name}</h3>
           <p>Ataque: {b.attack}</p>

@@ -22,7 +22,7 @@
   /* Sombra blanca y resplandor azul */
   font-size: 2.5rem;
   text-transform: uppercase;
-  animat ion: textGlowBlue 1.5s infinite alternate ease-in-out;
+  animation: textGlowBlue 1.5s infinite alternate ease-in-out;
   /* Animación de resplandor */
   text-align: center;
   /* Centrar el título */
