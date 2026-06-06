@@ -44,10 +44,12 @@ export default function Batalla() {
   const dañoCritico = () => {
     if (winner) return;
     if (turn === 0) {
-      setLifeB((prev) => Math.max(0, prev - Math.floor(prev / 2)));
+      const damage = (a.attack ?? 50) * 2;
+      setLifeB((prev) => Math.max(0, prev - damage));
       setTurn(1);
     } else {
-      setLifeA((prev) => Math.max(0, prev - Math.floor(prev / 2)));
+      const damage = (b.attack ?? 50) * 2;
+      setLifeA((prev) => Math.max(0, prev - damage));
       setTurn(0);
     }
   };
@@ -55,10 +57,12 @@ export default function Batalla() {
   const dañoNormal = () => {
     if (winner) return;
     if (turn === 0) {
-      setLifeB((prev) => Math.max(0, prev - 50));
+      const damage = (a.attack ?? 50);
+      setLifeB((prev) => Math.max(0, prev - damage));
       setTurn(1);
     } else {
-      setLifeA((prev) => Math.max(0, prev - 50));
+      const damage = (b.attack ?? 50);
+      setLifeA((prev) => Math.max(0, prev - damage));
       setTurn(0);
     }
   };
