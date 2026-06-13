@@ -34,6 +34,7 @@ export default function Batalla() {
   const [lifeA, setLifeA] = useState<number>(cards[0]?.lifePoints ?? 100);
   const [lifeB, setLifeB] = useState<number>(cards[1]?.lifePoints ?? 100);
   const [companion, setCompanion] = useState<any | null>(null);
+  const [companionExtraTurn, setCompanionExtraTurn] = useState<boolean>(false);
   const [winner, setWinner] = useState<string | null>(null);
   const [turn, setTurn] = useState<number>(0); // 0 = A's turn, 1 = B's turn
 
@@ -55,15 +56,38 @@ export default function Batalla() {
           setLifeA(parsed.cards[0].lifePoints ?? (parsed.cards[0].lifePoints ?? 100));
           setLifeB(parsed.cards[1].lifePoints ?? (parsed.cards[1].lifePoints ?? 100));
         }
-        if (parsed.companion) setCompanion(parsed.companion);
+        if (parsed.companion) {
+          setCompanion(parsed.companion);
+          // si viene metadata para turno extra, activarlo y darle el turno al dueño
+          const hasExtra = parsed.companion.extraTurnForId || localStorage.getItem('battle-extra-turn');
+          if (hasExtra) {
+            setCompanionExtraTurn(true);
+            setTurn(parsed.companion.attachToIndex ?? 0);
+          }
+        }
         localStorage.removeItem('battle-updated');
       }
     } catch (e) {
       // ignore
     }
-    // also check extra-turn if needed (not used here directly)
+    // limpiar llave extra-turn (la usamos para activar la lógica arriba)
     try { localStorage.removeItem('battle-extra-turn'); } catch {}
   }, []);
+
+  const companionAttack = () => {
+    if (!companion) return;
+    const atk = companion.card?.attack ?? 0;
+    const owner = companion.attachToIndex ?? 0;
+    if (owner === 0) {
+      setLifeB((prev) => Math.max(0, prev - atk));
+      setTurn(1);
+    } else {
+      setLifeA((prev) => Math.max(0, prev - atk));
+      setTurn(0);
+    }
+    setCompanionExtraTurn(false);
+    try { localStorage.removeItem('battle-extra-turn'); } catch {}
+  };
 
   const dañoCritico = () => {
     if (winner) return;
@@ -141,6 +165,11 @@ export default function Batalla() {
       </div>
 
       <div className="batalla-actions" style={{ marginTop: 20, display: 'flex', gap: 12, justifyContent: 'center' }}>
+        {companion && companionExtraTurn && companion.attachToIndex === turn && (
+          <button className="btn-normal" onClick={companionAttack} disabled={!!winner}>
+            ATACAR CON COMPAÑERO
+          </button>
+        )}
         <button className="btn-critico" onClick={dañoCritico} disabled={!!winner}>
           KAMEKAMEJA
 

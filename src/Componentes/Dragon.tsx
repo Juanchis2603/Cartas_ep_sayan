@@ -21,7 +21,7 @@ export default function Dragon() {
     setVisible(true);
     if (spawnTimeout.current) window.clearTimeout(spawnTimeout.current);
     // duración más corta para que la bola desaparezca antes
-    spawnTimeout.current = window.setTimeout(() => setVisible(false), 1600);
+    spawnTimeout.current = window.setTimeout(() => setVisible(false), 2000);
   };
 
   useEffect(() => {
