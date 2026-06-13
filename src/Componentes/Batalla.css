@@ -121,4 +121,25 @@ border-radius: 30%;
   border-radius: 30%;
 }
 
+/* Botón de acceso a la vista Dragon (arriba a la derecha) */
+.dragon-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: linear-gradient(90deg,#ffd27a,#ff8c00);
+  color: #001137;
+  font-weight: 800;
+  border: 3px solid #0026ff;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+}
+.dragon-button img { width: 34px; height: 34px; object-fit: cover; border-radius: 50%; }
+.dragon-button:active { transform: translateY(1px); }
+
 
