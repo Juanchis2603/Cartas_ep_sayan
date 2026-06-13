@@ -142,4 +142,9 @@ border-radius: 30%;
 .dragon-button img { width: 34px; height: 34px; object-fit: cover; border-radius: 50%; }
 .dragon-button:active { transform: translateY(1px); }
 
+/* Companion small card next to a main card */
+.companion-card { display:flex; flex-direction:column; align-items:center; margin-top:10px; margin-left:12px }
+.companion-card img { width: 70px; height: 70px; border-radius:8px; box-shadow: 0 6px 12px rgba(0,0,0,0.18); }
+.companion-card div { font-weight:800; font-size:0.85rem; margin-top:6px }
+
 
